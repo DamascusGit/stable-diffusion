@@ -1,7 +1,6 @@
 """make variations of input image"""
 
 import argparse, os, sys, glob
-sys.path.append("/content/drive/MyDrive/StableRun/stable-diffusion")
 import PIL
 import torch
 import numpy as np
@@ -61,6 +60,14 @@ def load_img(path):
 def main():
     parser = argparse.ArgumentParser()
 
+    parser.add_argument(
+        "--projectpath",
+        type=str,
+        nargs="?",
+        default=".",
+        help="the path of the main stable-diffusion repository"
+    )
+    
     parser.add_argument(
         "--prompt",
         type=str,
@@ -193,8 +200,8 @@ def main():
         choices=["full", "autocast"],
         default="autocast"
     )
-
     opt = parser.parse_args()
+    sys.path.append(opt.projectpath)
     seed_everything(opt.seed)
 
     config = OmegaConf.load(f"{opt.config}")
