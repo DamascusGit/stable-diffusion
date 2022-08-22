@@ -1,6 +1,7 @@
 """make variations of input image"""
 
 import argparse, os, sys, glob
+sys.path.append("/content/drive/MyDrive/StableRun/stable-diffusion")
 import PIL
 import torch
 import numpy as np
